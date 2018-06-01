@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Point
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import com.clock.easy.remind.wallpaper.tiphelper.TipApplication.Companion.context
 import java.util.regex.Pattern
 
 /**
@@ -42,4 +43,19 @@ fun isEmail(email: String): Boolean {
 fun dip2px(context: Context, dpValue: Float): Int {
     val scale = context.resources.displayMetrics.density
     return (dpValue * scale + 0.5f).toInt()
+}
+
+/**
+ * 获取状态栏高度
+ */
+private fun getStatuBarHeight(): Int? {
+    var statusBarHeight1 = -1
+    //获取status_bar_height资源的ID
+    val resourceId = context.getResources().getIdentifier("status_bar_height", "dimen",
+            "android")
+    if (resourceId > 0) {
+        //根据资源ID获取响应的尺寸值
+        statusBarHeight1 = context.getResources().getDimensionPixelSize(resourceId)
+    }
+    return statusBarHeight1
 }
